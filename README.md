@@ -71,7 +71,7 @@ Apabila proses *seeder* berhasil, Anda bisa masuk menggunakan kredensial ini unt
 - Password: `password`
 
 **Login Masyarakat:**
-- Username: `masyarakat`
+- Username: `asepbakar`
 - Password: `password`
 
 ---
