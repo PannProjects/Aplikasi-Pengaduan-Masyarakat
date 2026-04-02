@@ -1,57 +1,39 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="300" alt="Laravel Logo">
+# Aplikasi Pengaduan Masyarakat
 
-  <h1>📢 Aplikasi Pengaduan Masyarakat (Titanium Edition) ✨</h1>
-  <p><strong>Aplikasi pelaporan publik yang <i>lowkey</i> overpowered, no cap. 🧢</strong></p>
-</div>
+Aplikasi pelaporan publik berbasis web yang dibangun menggunakan Laravel 12. Proyek ini merupakan migrasi dari arsitektur lama (CakePHP) ke sistem yang lebih modern, cepat, dan aman. Tampilan antarmukanya (UI) juga dirombak menggunakan Tailwind CSS dengan tema *Titanium/Zinc* yang *clean*, simpel, dan responsif.
 
----
+## Fitur Utama
 
-## 💅 The Vibe (Introduction)
+- **Multi-Role Access:** Hak akses dibagi menjadi 3 level utama: Admin, Petugas, dan Masyarakat.
+- **Autentikasi Kustom:** Proses login diubah agar sepenuhnya memakai `Username` (bukan email). Registrasi masyarakat membutuhkan data valid seperti `NIK` (16 digit) dan Nomor Telepon.
+- **Upload Laporan & Bukti:** Fasilitas pengaduan memungkinkan masyarakat untuk mengunggah bukti foto pendukung. File dibatasi maksimal 10MB dengan spesifikasi format gambar yang aman (jpg, png, webp).
+- **Proses Penanganan Terpusat:** Petugas atau Admin dapat meninjau, memberikan tanggapan, dan mengupdate status laporan secara interaktif (Baru -> Proses -> Selesai).
+- **Dashboard Data Visual:** Halaman beranda utama menyajikan ringkasan jumlah laporan beserta *Doughnut Chart* (menggunakan Chart.js) untuk visualisasi cepat.
+- **Proteksi Logika Data:** Aplikasi sudah dibekali *constraint* agar admin/petugas tidak dapat menghapus akunnya sendiri, dan laporan yang sudah ditanggapi otomatis tidak bisa dihapus sembarangan.
 
-<i>Welcome to the era of aesthetic vibes!</i> ✨
-Aplikasi Pengaduan Masyarakat ini di- *migrate* secara spesifik dengan *framework* **Laravel 12** yang ngasih *developer experience* paling mulus sejagat raya. 
+## Kebutuhan Sistem
 
-Nggak cuma *backend*-nya doang yang *flexing* arsitektur keren, tapi **UI/UX-nya 100% Titanium Apple iOS Guidelines**. *FR FR* (For Real, For Real) antarmukanya super premium dengan *glassmorphism*, sudut-sudut *rounded-2xl* yang empuk, *diffused soft-shadows*, pokoknya *pleasing to the eyes* banget. 👀✨
+Sebelum memulai instalasi, pastikan sistem Anda memiliki lingkungan berikut:
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- Database MySQL atau MariaDB
 
-Aplikasi ini dibikin *strict* buat nge- *filter* mana yang *admin/petugas* dan mana yang *masyarakat biasa* (menggunakan *Roles & Gates* asli bawaan Laravel, rapi abis!). 
+## Panduan Instalasi Lokal
 
----
+Ikuti cara instalasi berikut untuk menjalankan proyek di komputer/server Anda sendiri.
 
-## 🛠️ Main Tech Stack (The GOATs)
+### 1. Install Dependencies
+Buka terminal/command prompt, lalu arahkan ke direktori root proyek ini dan ketikkan perintah berikut:
+```bash
+composer install
+npm install
+```
 
-- **[Laravel 12](https://laravel.com):** Sang *Core Engine*. Stabil, aman, ngacir. 🚀
-- **[TailwindCSS 3](https://tailwindcss.com):** Yang ngasih efek "Titanium" 💅
-- **[Chart.js](https://www.chartjs.org):** Buat visualisasi data pie chart di dashboard biar keliatan *smart* 🤓
-- **[Alpine.js](https://alpinejs.dev/):** *Sprinkle* interaktivitas javascript tipis-tipis gampang (*kayak fitur hide/show password eye blink*). 👁️
+### 2. Pengaturan Konfigurasi (.env)
+Buka file `.env` (jika belum ada, buat dengan mengkopi dari `.env.example`).
+Sesuaikan bagian informasi *database* agar terhubung dengan environment MySQL lokal Anda:
 
----
-
-## 🔥 Features That Slap
-
-- **Titanium UI/UX Interface:** Tampilan yang *super clean*, modern, dark-zinc vibes. Bikin betah natap layar berjam-jam. 📱
-- **Role-based Authentication:** Login dipisah berdasarkan level (Admin, Petugas, Masyarakat). Gak ada ceritanya *user* biasa iseng intip rahasia negara. 🛡️
-- **No Email Authentication:** Login & Register full pakai `Username` + `NIK` 16 Digit & `Nomor HP`. Nggak butuh email-email-an lagi, sangat cocok buat iklim masyarakat lokal. ☎️
-- **File Upload Validator:** Masyarakat bisa melampirkan foto-foto bukti (*receipt*). Udah diamankan dengan batas maksimal 10MB dengan format `png, jpg, webp`. *If it's too big, it ain't gonna pass!* ❌
-- **Cascade Deletion Protocols:** *Petugas* dilarang ngehapus akunnya sendiri dari dashboard (mencegah *suicide* akun admin tak sengaja 💀). Pengaduan juga gak bisa sembarang *delete* kalau udah ada yang nanggapin. 
-
----
-
-## 💻 How to Run (Localhost Vibing)
-
-Lagi pengen nyoba aplikasinya secara langsung? Beranjak dari kursi dan ikuti panduan *step-by-step* yang super gampang ini:
-
-### 1. The Pre-requisites
-Pastikan kamu udah punya modal ini di laptop kesayangan:
-- **PHP >= 8.2** (Wajib update kalau masih PHP purba 🙏)
-- **Composer** (Package manager yang setia)
-- **Node.js & NPM** (Buat *compile* baju/aset Tailwind-nya)
-- **Database Server** (XAMPP / Laragon / apa aja yang penting *MySQL/MariaDB* jalan!)
-
-### 2. Setup Database & Configs (Getting Ready)
-1. Buka *phpMyAdmin* atau *Database Manager* favoritmu.
-2. Bikin *database* kosong dengan nama `aplikasi_pengaduan_masyarakat`.
-3. Buka konfigurasi `.env` (Kalau nggak ada, cukup *copy* file `.env.example` ubah ke `.env`), terus cocokin sama server lokalmu:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -61,43 +43,36 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 3. The Ritual (Install & Build)
-Buka terminal alias jendela hitam *hacker*, pastikan posisinya di map folder aplikasi ini, langsung hajar kode sakti ini:
+### 3. Migrasi Database & Data Dummy
+Buka aplikasi *Database Manager* Anda (seperti phpMyAdmin, DBeaver, dll) dan buat sebuah *database* baru dengan nama: `aplikasi_pengaduan_masyarakat`.
 
+Jika database sudah dibuat, jalankan perintah migrasi ini di terminal agar Laravel membangun struktur tabel sekaligus menyisipkan akun uji coba bawaan seeder:
 ```bash
-# Donlod bahan-bahan Backend
-composer install
-
-# Panggil jin buat masangin struktur Database + Akun default dari langit
 php artisan migrate:fresh --seed
-
-# Donlod bahan-bahan Frontend & Compile bajunya (CSS/JS)
-npm install
-npm run build
 ```
 
-### 4. Lift Off! 🛸
-Udah selesai semua? Langsung jalankan server bawaan Laravel-nya:
-
+### 4. Build Assets & Server Start
+Terakhir, *compile* berkas aset UI dan nyalakan server lokal Laravel:
 ```bash
+npm run build
 php artisan serve
 ```
 
-Buka browser kecintaanmu di 👉 `http://127.0.0.1:8000`.
-
-*Voila!* Kamu bakal langsung ngeliat halamannya. Buat ngetes masuk, pake kunci ini:
-> **Masuk Sebagai Admin Utama:**
-> - **Username:** `admin`
-> - **Kata Sandi:** `password`
-
-> **Masuk Sebagai Masyarakat Test:**
-> - **Username:** `masyarakat`
-> - **Kata Sandi:** `password`
+Proyek sekarang bisa diakses melalui web browser di: `http://localhost:8000`
 
 ---
 
-## 🤝 The Rules of Code 
+## Akun Tes Default
 
-*Repository* ini dibuat khusus dengan dedikasi untuk tugas migrasi ke ekosistem Laravel nan asri. Bebas dimodifikasi asal tetap jaga kerapihan filenya! 
+Apabila proses *seeder* berhasil, Anda bisa masuk menggunakan kredensial ini untuk mulai mencoba aplikasinya:
 
-*Stay aesthetic, happy coding!* 💻✨
+**Login Admin:**
+- Username: `admin`
+- Password: `password`
+
+**Login Masyarakat:**
+- Username: `masyarakat`
+- Password: `password`
+
+---
+*Proyek ini diperbarui pada April 2026.*
